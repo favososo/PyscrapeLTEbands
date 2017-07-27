@@ -1,0 +1,91 @@
+<html>
+
+<head>
+	<title>Belong to Steve Team</title>
+	<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="js/jspdf.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
+	<script>
+		google.charts.load('current', { 'packages': ['geochart'] });
+	</script>
+	<script src='//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
+	<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/showValue_bands.js"></script>
+	<!--select out the checked option-->
+	<script src="js/showValue_country.js"></script>
+	<!--select out the checked option-->
+	<script src="js/showValue_operator.js"></script>
+	<!--select out the checked option-->
+	<script type="text/javascript" src="https://unpkg.com/vue@latest/dist/vue.js"></script>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<!--vue.js-->
+	<link href='http://fonts.googleapis.com/css?family=Tauri' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="CSS/styles.css">
+	
+</head>
+
+<body>
+	<h1><a href="index.html">Homepage</a></h1>
+	<div id="description"></div>
+	<span id="editor">by_Danny</span>
+	
+	<div style="margin:0 auto;border:2px; width:1700px ;height:700px;">
+		<table>
+			<tr>
+				<td>
+					<div id='map_canvas' style="width: 1000px; height: 600px;"></div>
+				</td>
+				<td>
+					<div style="position:inline-block;padding-left:20px;height:600px;width:100px;overflow:auto;font-family: 'Tauri', sans-serif;">
+						<script src="js/CheckAllbands.js"></script>
+                        <li style="margin-left:20px;">Bands</li>
+						<input type="checkbox" id="bandall" value="0" onclick="CheckAllbands()">--ALL--<br>
+						<input type="checkbox" name="band" value="1" onclick="showValue_bands()">Band 1<br>
+						<input type="checkbox" name="band" value="2" onclick="showValue_bands()">Band 2<br>
+						<input type="checkbox" name="band" value="3" onclick="showValue_bands()">Band 3<br>
+						<input type="checkbox" name="band" value="4" onclick="showValue_bands()">Band 4<br>
+						<input type="checkbox" name="band" value="5" onclick="showValue_bands()">Band 5<br>
+						<input type="checkbox" name="band" value="7" onclick="showValue_bands()">Band 7<br>
+						<input type="checkbox" name="band" value="8" onclick="showValue_bands()">Band 8<br>
+						<input type="checkbox" name="band" value="11" onclick="showValue_bands()">Band 11<br>
+						<input type="checkbox" name="band" value="12" onclick="showValue_bands()">Band 12<br>
+						<input type="checkbox" name="band" value="13" onclick="showValue_bands()">Band 13<br>
+						<input type="checkbox" name="band" value="17" onclick="showValue_bands()">Band 17<br>
+						<input type="checkbox" name="band" value="19" onclick="showValue_bands()">Band 19<br>
+						<input type="checkbox" name="band" value="20" onclick="showValue_bands()">Band 20<br>
+						<input type="checkbox" name="band" value="21" onclick="showValue_bands()">Band 21<br>
+						<input type="checkbox" name="band" value="25" onclick="showValue_bands()">Band 25<br>
+						<input type="checkbox" name="band" value="26" onclick="showValue_bands()">Band 26<br>
+						<input type="checkbox" name="band" value="28" onclick="showValue_bands()">Band 28<br>
+						<input type="checkbox" name="band" value="29" onclick="showValue_bands()">Band 29<br>
+						<input type="checkbox" name="band" value="30" onclick="showValue_bands()">Band 30<br>
+						<input type="checkbox" name="band" value="31" onclick="showValue_bands()">Band 31<br>
+						<input type="checkbox" name="band" value="32" onclick="showValue_bands()">Band 32<br>
+						<input type="checkbox" name="band" value="38" onclick="showValue_bands()">Band 38<br>
+						<input type="checkbox" name="band" value="39" onclick="showValue_bands()">Band 39<br>
+						<input type="checkbox" name="band" value="40" onclick="showValue_bands()">Band 40<br>
+						<input type="checkbox" name="band" value="41" onclick="showValue_bands()">Band 41<br>
+						<input type="checkbox" name="band" value="42" onclick="showValue_bands()">Band 42<br>
+						<input type="checkbox" name="band" value="43" onclick="showValue_bands()">Band 43<br>
+						<input type="checkbox" name="band" value="66" onclick="showValue_bands()">Band 66<br>
+					</div>
+					<!--<form action="">
+					<input id="show value" style="height:25px;width:200px;" type="button" value="OK" onclick="drawMap()" />
+				</form>-->
+				</td>
+				<td>
+					<div id='click_message' style="overflow:auto;height:520px;width:200px;text-align:justify;border:4px solid #000;padding-top:30px;background:#FCFCC3;"></div>
+                    <br>
+                    <button style="width:100%;height:30px" onclick="window.print()">Save into PDF</button>
+                </td>
+                
+			</tr>
+		</table>
+	</div>
+	<script src='js/drawMap.js'></script>
+	<!--<div id='test'></div>
+	draw google map function -->
+</body>
+
+</html>

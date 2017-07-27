@@ -1,0 +1,28 @@
+body {
+    font-family: Menlo, Consolas, monospace;
+    margin: 0px;
+	padding: 0px;
+	background-image: url("background.jpg");
+	background-size: cover;
+}
+.item {
+    cursor: pointer;
+}
+.bold {
+    font-weight: bold;
+}
+h1 {
+    font-family: 'Tauri', sans-serif;
+}
+li{
+    font-family: 'Tauri', sans-serif;
+    list-style-type: none;
+}
+span {
+	font-family: 'Tauri', sans-serif;
+}
+ul {
+    padding-left: 1em;
+    line-height: 1.5em;
+    list-style-type: none;
+}

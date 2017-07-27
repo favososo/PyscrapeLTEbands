@@ -1,0 +1,82 @@
+<html>
+
+<head>
+    <title>Belong to Steve Team</title>
+    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', { 'packages': ['geochart'] });
+    </script>
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/showValue_bands.js"></script>
+    <!--select out the checked option-->
+    <script src="js/showValue_country.js"></script>
+    <!--select out the checked option-->
+    <script src="js/showValue_operator.js"></script>
+    <!--select out the checked option-->
+    <script type="text/javascript" src="https://unpkg.com/vue@latest/dist/vue.js"></script>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <!--vue.js-->
+    <link href='http://fonts.googleapis.com/css?family=Tauri' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="CSS/styles.css">
+</head>
+
+<body>
+    <h1><a href="index.html">Homepages</a></h1>
+    <div id="description"></div>
+    <span id="editor">by_Danny</span>
+    <!-- ////////////////////////////////vue template//////////////////////////////// -->
+    <script type="text/x-template" id="root-template">
+        <ul v-show="true">
+            <li style="margin-left:30px;">Country List[+operators]</li>
+            <li><input type="checkbox" id="countryall" onclick="CheckAllcountries()">-------ALL--------</li>
+            <comcountry class="country" v-for="model in model.country" :model="model">
+            </comcountry>
+        </ul>
+    </script>
+    <script type="text/x-template" id="comcountry-template">
+        <li>
+            <input type='checkbox' :class="{bold: isFolder}" name='ccountry' onclick="showValue_country()">
+            <span>{{model.name}}</span>
+            <span class="item" @click="toggle" v-if="isFolder">[{{open ? '-' : '+'}}]</span>
+            <ul v-show="open" v-if="isFolder">
+                <comoperator class="operator" v-for="model in model.children" :model="model">
+                </comoperator>
+            </ul>
+        </li>
+    </script>
+    <script type="text/x-template" id="comoperator-template">
+        <li>
+            <input type='checkbox' :class="{bold: isFolder}" name='coperator' onclick="showValue_operator()">
+            <span>{{model.name}}</span>
+        </li>
+    </script>
+    <!-- ////////////////////////////////vue template//////////////////////////////// -->
+    <div style="margin:0 auto;border:2px; width:1700px ;height:700px;">
+        <table>
+            <tr>
+                <td>
+                    <div id='map_canvas' style="width: 1000px; height: 600px;"></div>
+                </td>
+                <td>
+                    <script src="js/CheckAllcountries.js"></script>
+                    <script src="js/leftcheckright.js"></script>
+                    <div id="countree" style="color: #08088A;position:inline-block;padding-left:1px;height:600px;width:300px;overflow:auto;">
+                        <component :is="root" class="TaiwanNO1" :model="treeData"></component>
+                    </div>
+                </td>
+                <td>
+                    <div id='click_message1' style="overflow:auto;height:520px;width:200px;text-align:justify;border:4px solid #000;padding-top:30px;background:#FCFCC3;"></div>
+                    <br>
+                    <button style="width:100%;height:30px" onclick="window.print()">Save into PDF</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script src='js/drawMap.js'></script>
+    <!--<div id='test'></div>
+	draw google map function -->
+</body>
+
+</html>
