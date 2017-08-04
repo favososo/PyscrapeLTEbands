@@ -52,31 +52,21 @@ def filter_span_str(content):
         # print('\033[93m'+"span?"+str(e))
         return
 
-
-def start_point(re_country):
-    if re_country > 0:
-        return 2
-    else:
-        return 1
-
-    try:
-        gss_scopes = ['https://spreadsheets.google.com/feeds']
-        gss_client = auth_gss_client(auth_json_path, gss_scopes)
-        print("Connction Established")
-        return gss_client
-    except BaseException as e:
-        print("Wrong connection: " + str(e))
-        return
-
-
 def store(country, operator, bands):
     try:
-        cur.execute("INSERT INTO band (country, operator, bands) VALUES (\"%s\",\"%s\",\"%s\")",
+        cur.execute("select country from lte_band.band where bands=" +
+                    bands + " and operator=\'\\\'" + operator + "\\\'\'")
+        temp = "'" + country + "'"
+        for unit in cur.fetchall():
+            if temp in unit:
+                print("exist!")
+                return
+        print("new data")
+        cur.execute("INSERT INTO band (country, operator, bands) VALUES (\"%s\",\"%s\",\"%s\") ",
                     (country, operator, int(bands, 10)))
         cur.connection.commit()
     except BaseException as e:
         print('\033[93m' + "\n" + str(e))
-
 
 def getTables(articleUrl):
     html = urlopen("http://en.wikipedia.org" + articleUrl)
@@ -121,11 +111,45 @@ def getTables(articleUrl):
                 store(country, operator, bands)
 
 
+def getTables2(page, B):
+    try:
+        website = "https://www.frequencycheck.com/carriers?commit=Search&page=" \
+            + str(page) + "&q[country_id_eq]=&q[frequency_bands_id_eq]=" \
+            + str(B) + "&q[name_cont]=&q[s]=carrier_frequencies_count+asc"
+        html = urlopen(website)
+    except BaseException as e:
+        print('\033[93m' + "\n" + str(e))
+    bsObj = BeautifulSoup(html, "html.parser")
+    # this variable is for saving index
+    table = bsObj.find("tbody")
+    rows = table.findAll("tr")
+    if len(rows) == 0:
+        print("Table empty, passing this page...\n")
+        return 0
+    # empty row numbers
+    if B > 14:
+        B = B + 2
+    for row in rows:
+        units = row.findAll('td')
+        operator = code2UTF(filter_str(units[0].get_text()))
+        country = code2UTF(filter_str(units[2].get_text()))
+        print("saving a content...")
+        print(country + "-" + operator + ":" + str(B))
+        store(country, operator, str(B))
+    return 1
+
+
 # getTables(Opage)
 pages = getLinks(Opage)
 for page in pages:
     print("Begin to crawl the page : " + page)
     getTables(page)
+for B in range(1, 43):
+    for page in range(1, 22):
+        print("Begin to crawl the page : " + str(page) + "of band : " + str(B))
+        if getTables2(page, B) == 0:
+            break
+
 cur.close()
 conn.close()
 
