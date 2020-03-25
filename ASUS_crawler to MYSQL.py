@@ -7,10 +7,7 @@ import pymysql
 
 Opage = "/wiki/List_of_LTE_networks"
 
-conn = pymysql.connect(host='127.0.0.1', port=3306, user='root',
-                       passwd='Acedanny79623', db='lte_band', charset='utf8')
-cur = conn.cursor()
-cur.execute("USE lte_band")
+
 
 
 def getLinks(articleUrl):
@@ -18,7 +15,8 @@ def getLinks(articleUrl):
     bsObj = BeautifulSoup(html, "html.parser")
     pages = []
     pages.append(articleUrl)
-    for link in bsObj.find("div", {"id": "bodyContent"}).findAll("a", href=re.compile("^(/wiki/List_of_LTE)((?!:).)*$")):
+    for link in bsObj.find("div", {"id": "bodyContent"})\
+            .findAll("a", href=re.compile("^(/wiki/List_of_LTE)((?!:).)*$")):
         if link.attrs['href'] not in pages:
             pages.append(link.attrs['href'])
     return pages
@@ -140,18 +138,23 @@ def getTables2(page, B):
 
 
 # getTables(Opage)
-pages = getLinks(Opage)
-for page in pages:
-    print("Begin to crawl the page : " + page)
-    getTables(page)
-for B in range(1, 43):
-    for page in range(1, 22):
-        print("Begin to crawl the page : " + str(page) + "of band : " + str(B))
-        if getTables2(page, B) == 0:
-            break
+if __name__ == '__main__':
 
-cur.close()
-conn.close()
+    conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='Acedanny79623', db='lte_band', charset='utf8')
+    cur = conn.cursor()
+    cur.execute("USE lte_band")
+    pages = getLinks(Opage)
+    for page in pages:
+        print("Begin to crawl the page : " + page)
+        getTables(page)
+    for B in range(1, 43):
+        for page in range(1, 22):
+            print("Begin to crawl the page : " + str(page) + "of band : " + str(B))
+            if getTables2(page, B) == 0:
+                break
 
-print("DONE!")
-system("pause")
+    cur.close()
+    conn.close()
+
+    print("DONE!")
+    system("pause")
