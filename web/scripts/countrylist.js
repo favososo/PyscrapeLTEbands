@@ -3,7 +3,7 @@ function getoperator(incountry) {
   sql4 = 'SELECT distinct operator from lte_band.band where country =' + '\'\\\'' + incountry + '\\\'\' order by operator asc;';
   $.ajax({
     async: false, //we must modify this, or return will fail
-    url: "PHP/conn_MySQL4.php",
+    url: "PHP/conn_MySQL_operatorList.php",
     data: "&sql4=" + sql4,
     type: "POST",
     dataType: 'text',
@@ -26,7 +26,7 @@ $(function () {
     var Bcountry = [];
     var Boperator = [];
     $.ajax({
-        url: "PHP/conn_MySQL2.php",
+        url: "PHP/conn_MySQL_countryList.php",
         data: "&sql1=" + sql1,
         type: "POST",
         dataType: 'text',

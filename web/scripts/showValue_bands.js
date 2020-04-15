@@ -21,7 +21,7 @@ function showValue_bands() {
 	}
 	sql += ") order by country asc;";
 	$.ajax({
-		url: "PHP/conn_MySQL.php",
+		url: "PHP/conn_MySQL_checkBand.php",
 		data: "&sql=" + sql,
 		type: "POST",
 		dataType: 'text',

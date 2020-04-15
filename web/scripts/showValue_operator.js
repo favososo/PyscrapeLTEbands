@@ -33,7 +33,7 @@ function showValue_operator() {
     sql5=sql5.replace(/&/,"%26");
 	//document.getElementById("click_message1").innerHTML=sql5;
 	$.ajax({
-		url: "PHP/conn_MySQL5.php",
+		url: "PHP/conn_MySQL_checkOperator.php",
 		data: "&sql5=" + sql5,
 		type: "POST",
 		dataType: 'text',

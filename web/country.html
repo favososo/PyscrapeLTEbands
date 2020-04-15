@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Belong to Steve Team</title>
+    <title>Belong to WeiFan</title>
     <script type='text/javascript' src='https://www.google.com/jsapi'></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
@@ -9,17 +9,22 @@
     </script>
     <script src='//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
     <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="js/showValue_bands.js"></script>
     <!--select out the checked option-->
-    <script src="js/showValue_country.js"></script>
+    <script src="scripts/showValue_bands.js"></script>
     <!--select out the checked option-->
-    <script src="js/showValue_operator.js"></script>
+    <script src="scripts/showValue_country.js"></script>
     <!--select out the checked option-->
-    <script type="text/javascript" src="https://unpkg.com/vue@latest/dist/vue.js"></script>
-    <script type="text/javascript" src="js/vue.js"></script>
+    <script src="scripts/showValue_operator.js"></script>
+
     <!--vue.js-->
+    <!--development version-->
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+    <!--published version-->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="scripts/vue.js"></script>
+
     <link href='http://fonts.googleapis.com/css?family=Tauri' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="CSS/styles.css">
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <body>
@@ -60,9 +65,9 @@
                     <div id='map_canvas' style="width: 1000px; height: 600px;"></div>
                 </td>
                 <td>
-                    <script src="js/CheckAllcountries.js"></script>
-                    <script src="js/leftcheckright.js"></script>
-                    <div id="countree" style="color: #08088A;position:inline-block;padding-left:1px;height:600px;width:300px;overflow:auto;">
+                    <script src="scripts/CheckAllcountries.js"></script>
+                    <script src="scripts/leftcheckright.js"></script>
+                    <div id="countree" style="color: #08088A;position:relative;padding-left:1px;height:600px;width:300px;overflow:auto;">
                         <component :is="root" class="TaiwanNO1" :model="treeData"></component>
                     </div>
                 </td>
@@ -74,7 +79,7 @@
             </tr>
         </table>
     </div>
-    <script src='js/drawMap.js'></script>
+    <script src='scripts/drawMap.js'></script>
     <!--<div id='test'></div>
 	draw google map function -->
 </body>
